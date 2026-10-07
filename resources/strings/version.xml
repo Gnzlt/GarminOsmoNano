@@ -1,0 +1,4 @@
+<!-- Written by scripts/build.sh from VERSION; edit VERSION instead. -->
+<strings>
+    <string id="AppVersion">0.7.3</string>
+</strings>

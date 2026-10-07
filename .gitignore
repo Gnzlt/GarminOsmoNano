@@ -1,0 +1,23 @@
+# Build output
+bin/
+*.prg
+*.iq
+*.prg.debug.xml
+mir/
+gen/
+# written by scripts/build.sh --beta
+manifest-beta.xml
+
+# Signing keys never enter the repo
+*.der
+*.pem
+
+# The maintainer's Store listing and working notes, kept local
+store/
+docs/
+
+# Local experiments and field-test logs (they hold the camera's MAC and serial)
+scratch/
+logs/
+.DS_Store
+__pycache__/

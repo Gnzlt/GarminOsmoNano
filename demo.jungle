@@ -1,0 +1,4 @@
+# Combined with monkey.jungle by scripts/build.sh --demo: adds demo/ and swaps
+# the real camera for a fake one that walks through every screen state.
+base.sourcePath = source;test;demo
+base.excludeAnnotations = nodemo

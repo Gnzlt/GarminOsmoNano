@@ -1,0 +1,16 @@
+<drawables>
+    <bitmap id="LauncherIcon" filename="launcher_icon.png"/>
+    <!-- The shooting modes: the glyph for the main screen, and a smaller one under the record time (scripts/mode-icons.py) -->
+    <bitmap id="ModeVideo" filename="mode_video.png"/>
+    <bitmap id="ModeVideoSmall" filename="mode_video_s.png"/>
+    <bitmap id="ModePhoto" filename="mode_photo.png"/>
+    <bitmap id="ModePhotoSmall" filename="mode_photo_s.png"/>
+    <bitmap id="ModeTimelapse" filename="mode_timelapse.png"/>
+    <bitmap id="ModeTimelapseSmall" filename="mode_timelapse_s.png"/>
+    <bitmap id="ModeHyperlapse" filename="mode_hyperlapse.png"/>
+    <bitmap id="ModeHyperlapseSmall" filename="mode_hyperlapse_s.png"/>
+    <bitmap id="ModeSuperNight" filename="mode_supernight.png"/>
+    <bitmap id="ModeSuperNightSmall" filename="mode_supernight_s.png"/>
+    <bitmap id="ModeSloMo" filename="mode_slomo.png"/>
+    <bitmap id="ModeSloMoSmall" filename="mode_slomo_s.png"/>
+</drawables>

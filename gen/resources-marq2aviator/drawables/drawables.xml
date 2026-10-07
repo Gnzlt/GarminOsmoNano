@@ -1,0 +1,4 @@
+<!-- Written by scripts/icons.sh: the launcher icon at this product's size. -->
+<drawables>
+    <bitmap id="LauncherIcon" filename="launcher_icon.png"/>
+</drawables>
