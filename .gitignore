@@ -1,23 +1,27 @@
-# Build output
+# Build output (manifest-beta.xml is written by scripts/build.sh --iq)
 bin/
 *.prg
 *.iq
 *.prg.debug.xml
 mir/
-gen/
-# written by scripts/build.sh --beta
 manifest-beta.xml
 
 # Signing keys never enter the repo
 *.der
 *.pem
 
-# The maintainer's Store listing and working notes, kept local
-store/
-docs/
-
-# Local experiments and field-test logs (they hold the camera's MAC and serial)
+# Local caches, experiments and ride data
+.cache/
+*.fit
+__pycache__/
+venv/
 scratch/
+# Field-test logs off the watch: they hold device addresses and serials
 logs/
 .DS_Store
-__pycache__/
+# Raw simulator captures; the cropped store/screens/*.jpg are what gets uploaded
+store/screens/raw/
+
+# --- this project ---
+# The maintainer's working notes, kept local
+docs/

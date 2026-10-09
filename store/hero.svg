@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1440" height="720" viewBox="0 0 1440 720">
+  <!-- Store hero image (1440 × 720). Rendered by scripts/icons.sh to store/hero.png.
+       The watch is store/screens/2-recording.jpg, the demo build on the fēnix 8 47 mm. -->
+  <!-- White, as the screenshot's own background, so the watch has no box. -->
+  <rect width="1440" height="720" fill="#FFFFFF"/>
+
+  <!-- Left: icon, name, pitch -->
+  <image x="110" y="96" width="150" height="150" xlink:href="icon-500.png"/>
+  <text x="110" y="378" font-family="Helvetica, Arial, sans-serif" font-size="88" font-weight="bold" fill="#1A2328">OsmoNano</text>
+  <text x="112" y="440" font-family="Helvetica, Arial, sans-serif" font-size="36" fill="#3C4A52">Start, stop and switch modes on</text>
+  <text x="112" y="486" font-family="Helvetica, Arial, sans-serif" font-size="36" fill="#3C4A52">your DJI Osmo Nano, from your wrist.</text>
+  <text x="112" y="572" font-family="Helvetica, Arial, sans-serif" font-size="24" fill="#E53935" font-weight="bold">RECORD · PHOTO · SHOOTING MODES · LINK</text>
+  <text x="112" y="612" font-family="Helvetica, Arial, sans-serif" font-size="24" fill="#5A6A72">Direct Bluetooth link · no phone needed</text>
+
+  <!-- Right: the watch -->
+  <image x="815" y="10" width="540" height="697" xlink:href="screens/2-recording.jpg"/>
+</svg>
