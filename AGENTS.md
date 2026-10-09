@@ -117,6 +117,20 @@ ciq-sim run bin/<App>-demo.prg fr255sm   # the demo on one device, headless
   store/screens/<n>-<name>.jpg`.
 - After an upload, tag the commit: `git tag v<VERSION> && git push --tags`.
 
+### README
+
+`README.md` has the same shape in all three projects, so a reader finds things in the same place:
+
+- The logo, `store/icon-500.png` at 140 px, centred; then the app's name as the title, a row of
+  badges (the app type and "watches: 44", plus the licence, the Store and sponsor badges on a
+  public repo), and a one-line bold tagline; then a short intro.
+- These sections, in this order: **What it does**, **Supported watches** (the same paragraph,
+  with the memory figure and the status line of the app), **Install**, **Using it**, **How it
+  works** (a layer map of `source/` and links to `docs/`), **Diagnostics**, **Build and test**
+  (the same commands), **Contributing**, **Credits**, **License**.
+- Change it with the change that makes it stale. The watch list and the build commands are the
+  same in all three, so they change in all three.
+
 ### Diagnostics
 
 - **Data fields record into the activity's FIT file.** Besides the values a rider sees in Garmin

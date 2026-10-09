@@ -1,16 +1,19 @@
 <p align="center">
-  <img src="logo.png" alt="OsmoNano" width="140">
+  <img src="store/icon-500.png" alt="OsmoNano" width="140">
 </p>
 
 <h1 align="center">OsmoNano</h1>
 
 <p align="center">
+  <a href="https://apps.garmin.com/apps/67b74d57-fa8e-4da5-a073-7beffff693c6"><img src="https://img.shields.io/badge/Connect%20IQ-watch%20app-E31837.svg" alt="Connect IQ watch app"></a>
+  <img src="https://img.shields.io/badge/watches-44-blue.svg" alt="44 watches">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
-  <a href="https://apps.garmin.com/apps/67b74d57-fa8e-4da5-a073-7beffff693c6"><img src="https://img.shields.io/badge/Garmin-Connect%20IQ-E31837.svg" alt="Garmin Connect IQ"></a>
   <a href="https://www.buymeacoffee.com/gnzlt"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?logo=buy-me-a-coffee&logoColor=black" alt="Buy Me a Coffee"></a>
 </p>
 
-OsmoNano is a Garmin Connect IQ watch app that talks to the DJI Osmo Nano camera directly over the watch's own Bluetooth. You can start and stop recording, take a photo, and change the shooting mode. The watch shows whether the camera is connected and recording, and for how long.
+<p align="center"><b>Control a DJI Osmo Nano from your Garmin watch, over its own Bluetooth.</b></p>
+
+OsmoNano is a Garmin Connect IQ watch app that talks to the DJI Osmo Nano camera directly, with no phone in between. You can start and stop recording, take a photo, and change the shooting mode. The watch shows whether the camera is connected and recording, and for how long.
 
 ## What it does
 
@@ -34,15 +37,9 @@ locked: changing it mid-recording makes the Nano show an error.
 ## Supported watches
 
 OsmoNano supports Garmin's 5-button round watches with Bluetooth for apps, Connect IQ 5.0 or later,
-and 768 KB for a watch app:
-- fēnix 7, 8, 9 and E, and epix (Gen 2) / epix Pro;
-- Enduro 3;
-- Forerunner 165, 255 Music, 265, 570, 955, 965 and 970;
-- MARQ (Gen 2);
-- D2 Mach;
-- Instinct 3 AMOLED.
-
-That's 44 products in all. Quatix, tactix and other editions share these products.
+and 768 KB for a watch app: fēnix 7, 8, 9 and E, epix (Gen 2) / epix Pro, Enduro 3, Forerunner 165,
+255 Music, 265, 570, 955, 965 and 970, MARQ (Gen 2), D2 Mach and Instinct 3 AMOLED. That's 44
+products in all, and Quatix, tactix and other editions share them.
 [`scripts/devices.py`](scripts/devices.py) checks each candidate against Garmin's device profiles
 and writes the list into `manifest.xml`. Touch-first watches (Venu, vivoactive) and monochrome
 screens are out of scope.
@@ -61,7 +58,7 @@ watches are very welcome.
   4. **Optional, for a log file:** create an empty `GARMIN/APPS/LOGS/OSMONANO.TXT`. A sideloaded app
      writes its log there only if the file exists.
 
-## First connection
+## Using it
 
 1. Close or disconnect the camera's phone app: the camera takes one Bluetooth controller at a time.
 2. **Put the Nano in its Vision Dock for the first pairing:** the camera has no screen, so the
@@ -96,7 +93,7 @@ are listed in [`AGENTS.md`](AGENTS.md), and breaking one fails on the camera, no
 - answer every camera request;
 - a keepalive every second.
 
-### Debugging on the watch
+## Diagnostics
 
 - **Diagnostics** (in the menu) shows the frame log live: orange is sent, green is received.
 - **The log file** (`OSMONANO.TXT`, sideloaded builds only) has every line, with the version and
