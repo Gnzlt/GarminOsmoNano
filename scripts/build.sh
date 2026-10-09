@@ -1,28 +1,30 @@
 #!/usr/bin/env bash
-# Build OsmoNano with strict type checking:
-#   bin/OsmoNano-<device>.prg    release, to sideload: every product in manifest.xml,
-#                                or only $DEVICE when it is set (DEVICE=fenix847mm)
-#   bin/OsmoNano-test.prg        with the (:test) functions, for the simulator
-#                                (on $DEVICE, fenix847mm by default)
-#   bin/OsmoNano-demo.prg        a fake camera that walks every screen (only with --demo)
-#   bin/OsmoNano.iq              the Store package, every product
-#   bin/OsmoNano-beta.iq         the same under the Store beta's app id
-#                                (--iq or --beta: always both, so the release and
-#                                the beta never ship different versions)
+# Build OsmoNano with strict type checking. The shape is the same in GarminOBD,
+# GarminOsmoNano and GarminTPMS; only APP, BETA_ID and the demo differ.
+#   bin/OsmoNano-<device>.prg   release, to sideload: every product in manifest.xml,
+#                            or only $DEVICE when it is set (DEVICE=fenix847mm)
+#   bin/OsmoNano-test.prg       with the (:test) functions, for the simulator
+#                            (on $DEVICE, fenix847mm by default)
+#   bin/OsmoNano-demo.prg       a fake camera that walks every screen (only with --demo)
+#   bin/OsmoNano.iq             the Store package, every product
+#   bin/OsmoNano-beta.iq        the same under the Store beta's app id
+#                            (--iq or --beta: always both, so the release and
+#                            the beta never ship different versions)
 # Any compiler warning fails the build: that is the project's gate.
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+APP="OsmoNano"
 DEVICE="${DEVICE:-}"
-TEST_DEVICE="${DEVICE:-fenix847mm}"
-# The maintainer's private Store beta's app id; set BETA_ID for your own. A beta
-# must not share the production id in manifest.xml; keep it fixed so every
-# upload updates the same beta.
+TEST_DEVICE="${DEVICE:-fenix847mm}"   # the test and demo builds run in the simulator on one device
+# The Store beta's app id; set BETA_ID for your own. A beta must not share the
+# production id in manifest.xml; keep it fixed so every upload updates the same beta.
 BETA_ID="${BETA_ID:-2ef719bfee4a45679d5b87ae5e8e15ac}"
 KEY="${CIQ_KEY:-$HOME/.config/connectiq/developer_key.der}"
 cd "$ROOT"
 mkdir -p bin
 
-# VERSION is the one place the version lives; About shows it.
+# VERSION is the one place the version lives: the Store form asks for it on
+# upload (Connect IQ manifests have no version), and the app shows it.
 VERSION="$(tr -d '[:space:]' <VERSION)"
 cat >resources/main/strings/version.xml <<XML
 <!-- Written by scripts/build.sh from VERSION; edit VERSION instead. -->
@@ -58,20 +60,21 @@ else
     devices=($(sed -n 's/.*<iq:product id="\([^"]*\)".*/\1/p' manifest.xml))
 fi
 for d in "${devices[@]}"; do
-    build monkey.jungle "bin/OsmoNano-$d.prg" "$d" -r
+    build monkey.jungle "bin/$APP-$d.prg" "$d" -r
 done
-build monkey.jungle "bin/OsmoNano-test.prg" "$TEST_DEVICE" --unit-test
+build monkey.jungle "bin/$APP-test.prg" "$TEST_DEVICE" --unit-test
 packages=0
 for arg in "$@"; do
     case "$arg" in
-        --demo) build "monkey.jungle;demo.jungle" "bin/OsmoNano-demo.prg" "$TEST_DEVICE" ;;
+        --demo) build "monkey.jungle;demo.jungle" "bin/$APP-demo.prg" "$TEST_DEVICE" ;;
         --iq | --beta) packages=1 ;;
     esac
 done
 if [[ "$packages" == 1 ]]; then
-    export_iq monkey.jungle bin/OsmoNano.iq
+    export_iq monkey.jungle "bin/$APP.iq"
     prod_id="$(sed -n 's/.*iq:application id="\([0-9a-f]*\)".*/\1/p' manifest.xml)"
     sed "s/$prod_id/$BETA_ID/" manifest.xml >manifest-beta.xml
-    export_iq beta.jungle bin/OsmoNano-beta.iq
-    echo "    upload both as App Version $VERSION (the beta with Beta App ticked), then: git tag v$VERSION && git push --tags"
+    export_iq beta.jungle "bin/$APP-beta.iq"
+    echo "    upload both as App Version $VERSION (the beta with Beta App ticked; store/listing.md),"
+    echo "    then: git tag v$VERSION && git push --tags"
 fi
