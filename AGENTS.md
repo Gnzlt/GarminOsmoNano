@@ -120,12 +120,17 @@ ciq-sim run bin/<App>-demo.prg fr255sm   # the demo on one device, headless
 ### Diagnostics
 
 - **Data fields record into the activity's FIT file.** Besides the values a rider sees in Garmin
-  Connect, `source/fit/Recorder.mc` writes diagnostic developer fields (ids 15 and up, hidden from
-  Garmin Connect): counters and states per second, and a session summary with the settings and
-  the device as text. `tools/ride_report.py` reads them from a ride's `.fit` (copied from
-  `GARMIN/ACTIVITY/` or exported from Garmin Connect). Nothing has to be set up on the watch.
-  Record fields cannot hold text and are written only while the timer runs; the session
-  counters cover the whole time the field ran.
+  Connect, `source/fit/Recorder.mc` writes two hidden UINT32 record fields, ids 15 and 16,
+  through `source/fit/Diag.mc` (the same file in both data fields): `<x>_link` packs the live
+  state (phase, ages, signal) into one number, and `<x>_counts` carries one counter per second in
+  turn as `(slot << 24) | value`, the slots named in `DiagSlots`. `tools/ride_report.py` reads
+  them from a ride's `.fit` (copied from `GARMIN/ACTIVITY/` into `logs/`, or exported from
+  Garmin Connect). Nothing has to be set up on the watch.
+- FIT limits learned the hard way: record fields cannot hold text; an array field (`:count`)
+  crashes the simulator; a Monkey C Number is signed, so a packed value keeps its top bit clear;
+  records exist only while the timer runs (the counters cover the whole time the field ran);
+  Connect IQ fields share a small budget per activity (about 16 developer fields, reportedly
+  across all data fields), so diagnostics stay in those two fields.
 - **The text log is optional.** `source/Log.mc` writes `System.println` lines (with the version
   and the time) that a sideloaded app keeps in `GARMIN/APPS/LOGS/<PRG name>.TXT` only if that
   file exists. Data fields keep it behind the **Debug log** setting, off by default. The watch
