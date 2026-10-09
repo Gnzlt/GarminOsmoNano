@@ -2,7 +2,7 @@
 #   assets/launcher_icon.png   512 px, transparent: the master for the launcher icon
 #   store/icon-500.png         the Store icon: 500 px on a solid background with
 #                              rounded corners, transparent outside them
-#                              (store/ is the maintainer's, kept out of git)
+#                              (committed with the rest of store/)
 # The Store's brand rules ask for a non-black background and at least 10 px
 # of padding. Run by scripts/icons.sh.
 import os

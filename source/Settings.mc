@@ -1,4 +1,4 @@
-// Typed reads of the app properties (resources/settings). A missing or
+// Typed reads of the app properties (resources/main/settings). A missing or
 // mistyped value gives the fallback: getValue() throws for a key an older
 // install does not have yet.
 import Toybox.Application;

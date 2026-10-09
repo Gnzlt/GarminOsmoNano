@@ -24,7 +24,7 @@ mkdir -p bin
 
 # VERSION is the one place the version lives; About shows it.
 VERSION="$(tr -d '[:space:]' <VERSION)"
-cat >resources/strings/version.xml <<XML
+cat >resources/main/strings/version.xml <<XML
 <!-- Written by scripts/build.sh from VERSION; edit VERSION instead. -->
 <strings>
     <string id="AppVersion">$VERSION</string>

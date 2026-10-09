@@ -5,8 +5,8 @@
 #                                 the name above it)
 #   mode_<mode>_s.png             the glyph, small: under the record time
 # The screen-sized ones are written once per screen width the products have
-# (scripts/devices.py): the 454 px reference set in resources/drawables, the base every
-# product falls back to, and every other width in gen/resources-round-WxH/drawables
+# (scripts/devices.py): the 454 px reference set in resources/main/drawables, the base every
+# product falls back to, and every other width in resources/gen/round-WxH/drawables
 # with its own drawables.xml, which overrides the same ids.
 # The background is pure black, so on an AMOLED screen those pixels stay
 # off; the glyph is white with anti-aliased grey edges, drawn from a 4x
@@ -81,9 +81,9 @@ for name, g in sources.items():
     square(g, MASTER, MASTER * 80 // 100).save(f"assets/modes/{name}.png")
 for width, mip in sorted(widths.items()):
     if width == BASE:
-        out = "resources/drawables"
+        out = "resources/main/drawables"
     else:
-        out = f"gen/resources-round-{width}x{width}/drawables"
+        out = f"resources/gen/round-{width}x{width}/drawables"
         os.makedirs(out, exist_ok=True)
         with open(f"{out}/drawables.xml", "w") as f:
             f.write(drawables_xml(mip))

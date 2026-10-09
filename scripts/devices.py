@@ -1,17 +1,19 @@
-# The products OsmoNano ships for, checked against the SDK's device profiles
-# (~/.Garmin/ConnectIQ/Devices, downloaded with Garmin's SDK Manager). A
-# candidate ships only if its profile shows what the app relies on:
-#   - a round screen (the layout is proportional to a circle);
-#   - BLE for apps (the camera link);
+# The products every Connect IQ app here ships for, checked against the SDK's
+# device profiles (~/.Garmin/ConnectIQ/Devices, downloaded with Garmin's SDK
+# Manager). This file is the same in GarminOBD, GarminOsmoNano and GarminTPMS:
+# the three apps support the same watches, so a product ships in all of them or
+# in none. A candidate ships only if its profile shows:
+#   - a round screen (the layouts are proportional to a circle);
+#   - BLE for apps (every app here talks BLE);
 #   - Connect IQ 5.0 or later (manifest minApiLevel);
-#   - at least 768 KB for a watch app;
-#   - the five buttons (START, UP/MENU, DOWN, BACK): the app's whole input.
-#     Touch-first watches (Venu, vivoactive) lack UP and DOWN.
+#   - at least 768 KB for a watch app and 128 KB for a data field;
+#   - the five buttons (START, UP/MENU, DOWN, BACK): touch-first watches
+#     (Venu, vivoactive) lack UP and DOWN.
 #
-#   python scripts/devices.py              the table, with why a candidate is out
-#   python scripts/devices.py --manifest   also writes the shipping list into manifest.xml
-#   python scripts/devices.py --list       "<product> <width> <launcher px> <amoled|mip>" per
-#                                          shipping product, for scripts/icons.sh
+#   uv run --no-project python scripts/devices.py              the table, with why a candidate is out
+#   uv run --no-project python scripts/devices.py --manifest   also writes the list into manifest.xml
+#   uv run --no-project python scripts/devices.py --list       "<product> <width> <launcher px> <amoled|mip>"
+#                                                              per shipping product, for scripts/icons.sh
 import json
 import math
 import re
@@ -21,7 +23,7 @@ from pathlib import Path
 PROFILES = Path.home() / ".Garmin/ConnectIQ/Devices"
 MANIFEST = Path(__file__).resolve().parent.parent / "manifest.xml"
 MIN_CIQ = (5, 0, 0)
-MIN_MEMORY = 768 * 1024
+MIN_MEMORY = {"watchApp": 768 * 1024, "datafield": 128 * 1024}
 KEYS = {"up", "down", "menu", "enter", "esc"}
 
 # The most used and the top current 5-button round watches. Quatix, tactix and
@@ -65,29 +67,30 @@ class Device:
         self.launcher = c["launcherIcon"]["width"]
         self.amoled = c.get("displayType") == "amoled"
         self.round = s["display"].get("shape") == "round"
-        apps = [a for a in c["appTypes"] if a["type"] == "watchApp"]
-        self.memory = apps[0]["memoryLimit"] if apps else 0
+        self.memory = {a["type"]: a["memoryLimit"] for a in c["appTypes"]}
         versions = [p.get("connectIQVersion", "0") for p in c.get("partNumbers", [])]
         self.ciq = max((tuple(int(x) for x in v.split(".")) for v in versions), default=(0,))
         self.ble = 'parent="Toybox_BluetoothLowEnergy_ScanResult"' in api
         keys = {k["id"]: k["location"] for k in s.get("keys", [])}
         self.keys = set(keys)
-        # START's angle on the screen, counter-clockwise from 3 o'clock: the
-        # app draws its cue there.
+        # START's angle on the screen, counter-clockwise from 3 o'clock: an app
+        # can draw its cue there.
         self.start = None
         if "enter" in keys:
             k, disp = keys["enter"], s["display"]["location"]
             dx = k["x"] + k["width"] / 2 - (disp["x"] + disp["width"] / 2)
             dy = (disp["y"] + disp["height"] / 2) - (k["y"] + k["height"] / 2)
             self.start = round(math.degrees(math.atan2(dy, dx)))
+        short = [f"{self.memory.get(t, 0) // 1024} KB for a {t}"
+                 for t, need in MIN_MEMORY.items() if self.memory.get(t, 0) < need]
         if not self.round:
             self.reason = "not round"
         elif not self.ble:
             self.reason = "no BLE for apps"
         elif self.ciq < MIN_CIQ:
             self.reason = "Connect IQ " + ".".join(map(str, self.ciq))
-        elif self.memory < MIN_MEMORY:
-            self.reason = f"{self.memory // 1024} KB for a watch app"
+        elif short:
+            self.reason = ", ".join(short)
         elif not KEYS <= self.keys:
             self.reason = "no " + "/".join(sorted(KEYS - self.keys)) + " button"
 
@@ -119,7 +122,8 @@ def main() -> None:
         if d.ok:
             print(f"ok   {d.id:22} {d.width}x{d.height} {'amoled' if d.amoled else 'mip   '} "
                   f"icon {d.launcher:3} CIQ {'.'.join(map(str, d.ciq)):6} "
-                  f"{d.memory // 1024} KB  START {d.start}°")
+                  f"app {d.memory['watchApp'] // 1024} KB  field {d.memory['datafield'] // 1024} KB  "
+                  f"START {d.start}°")
         else:
             print(f"out  {d.id:22} {d.reason}")
     ok = [d for d in devices if d.ok]

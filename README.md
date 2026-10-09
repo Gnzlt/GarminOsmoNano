@@ -119,8 +119,8 @@ scripts/build.sh            # bin/OsmoNano-<product>.prg for every product, and 
 DEVICE=fenix847mm scripts/build.sh --demo   # one product, plus the demo build
 scripts/build.sh --iq       # also the Store packages: bin/OsmoNano.iq and bin/OsmoNano-beta.iq
 scripts/test.sh             # every unit test, in the SDK simulator
-python3 scripts/devices.py  # which candidate watches ship, and why the others don't
-scripts/icons.sh            # regenerate the launcher icons and the mode art (needs uv and rsvg-convert)
+uv run --no-project python scripts/devices.py   # which candidate watches ship, and why the others don't
+scripts/icons.sh            # regenerate the launcher icons, the mode art and the Store images (needs uv, and rsvg-convert or resvg)
 ```
 
 The build uses strict type checking (`-l 3`), and **any compiler warning fails it**. To see every
