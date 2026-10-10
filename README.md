@@ -96,6 +96,9 @@ are listed in [`AGENTS.md`](AGENTS.md), and breaking one fails on the camera, no
 ## Diagnostics
 
 - **Diagnostics** (in the menu) shows the frame log live: orange is sent, green is received.
+  Its first lines say how the last run ended: if the app did not stop cleanly (a crash, the
+  watch restarting, the watch ending it), they give how long it ran, its memory use and the
+  camera link's state.
 - **The log file** (`OSMONANO.TXT`, sideloaded builds only) has every line, with the version and
   the time.
 - **Protocol** (in the menu) holds the session choices that may differ between firmware versions.

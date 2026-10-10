@@ -191,6 +191,11 @@ ciq-sim run bin/<App>-demo.prg fr255sm   # the demo on one device, headless
   list. The demo build walks every screen in a 60-second loop.
 - Diagnostics: the **Diagnostics** screen (menu) shows the frame log live; `source/Log.mc` also
   writes every line to `OSMONANO.TXT` when that file exists on a sideloaded install.
+  `source/RunTrail.mc` keeps one record in Storage per run (clean stop or not, uptime, peak and
+  least-free memory, link phase), so the next launch logs how the last one ended: a watch app has
+  no FIT file for this, and a Store or beta install writes no text log. Writes to Storage go
+  through `Store` (`source/Store.mc`), which cannot throw: an exception in a BLE callback ends the
+  app.
 
 ### BLE and DUML rules
 
@@ -223,6 +228,7 @@ in the compiler.
 | `source/ble/BleLink.mc` | Scan, pair, GATT setup, paced chunked writes, notifications |
 | `source/ui/` | `MainView`, `MainDelegate` (buttons), `Menus`, `LogView` (Diagnostics) |
 | `source/Log.mc` | Frame log: the Diagnostics screen and `System.println` (the log file on the watch) |
+| `source/RunTrail.mc`, `source/Store.mc` | How the last run ended; Storage writes that cannot throw |
 | `demo/` | `DemoCamera`, a fake camera that walks every screen |
 | `test/` | `DumlTest` (frames against the reference frames), `SessionTest` (fake transport) |
 | `assets/` | `icon-source.jpg`, the icon's source; `launcher_icon.png`, its 512 px cut-out; `modes-source/`, the mode glyphs' sources; `modes/`, their 512 px normalised masters |

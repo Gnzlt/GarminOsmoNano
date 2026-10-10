@@ -3,6 +3,16 @@
 OsmoNano versions as uploaded to the Connect IQ Store, release and beta. Each one is tagged
 `v<version>`.
 
+## 0.7.6 (unreleased): a trail when the app does not stop cleanly
+
+Ported from Moto OBD, whose watch restarted mid-ride with nothing to say why.
+
+- Each time the app starts it notes in **Diagnostics** how the last run ended. If it did not
+  stop cleanly (the app crashed, the watch restarted, or the watch ended it), it says how long
+  that run went, how much memory it used and had left, and what the camera link was doing.
+- The saved camera, its name and the last mode are written so that a full or refusing watch
+  storage can no longer end the app in the middle of a connection.
+
 ## 0.7.5 (unreleased): packaging only
 
 - The same watch app as 0.7.4. The sources are reorganised (resources under `resources/`), the
