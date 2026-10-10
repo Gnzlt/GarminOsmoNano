@@ -18,6 +18,7 @@ class OsmoNanoApp extends Application.AppBase {
     private var _link as BleLink? = null;
     private var _timer as Timer.Timer? = null;
     private var _ticks as Number = 0;
+    private var _trail as RunTrail = new RunTrail("lastRun");
 
     function initialize() {
         AppBase.initialize();
@@ -42,6 +43,7 @@ class OsmoNanoApp extends Application.AppBase {
         var v = WatchUi.loadResource(Rez.Strings.AppVersion) as String;
         Log.start(v);
         logBanner(v);
+        _trail.begin(System.getTimer());
         if (_link != null) {
             (_link as BleLink).start();
         }
@@ -76,6 +78,7 @@ class OsmoNanoApp extends Application.AppBase {
 
     function onStop(state as Dictionary?) as Void {
         Log.add("stop");
+        _trail.end(System.getTimer(), _camera.phase);
         if (_timer != null) {
             (_timer as Timer.Timer).stop();
         }
@@ -91,6 +94,7 @@ class OsmoNanoApp extends Application.AppBase {
             (_link as BleLink).tick(now);
         }
         _camera.tick(now);
+        _trail.tick(now, _camera.phase);
         _ticks++;
         if (_ticks % DRAW_EVERY == 0) {
             WatchUi.requestUpdate();

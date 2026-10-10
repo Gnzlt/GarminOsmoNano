@@ -166,8 +166,8 @@ class BleLink extends BluetoothLowEnergy.BleDelegate {
     }
 
     function forget() as Void {
-        Application.Storage.deleteValue(STORE_CAMERA);
-        Application.Storage.deleteValue(STORE_NAME);
+        Store.remove(STORE_CAMERA);
+        Store.remove(STORE_NAME);
         _directNext = false;
         restart();
     }
@@ -264,8 +264,8 @@ class BleLink extends BluetoothLowEnergy.BleDelegate {
             return;
         }
         _choosing = false;
-        Application.Storage.setValue(STORE_CAMERA, r);
-        Application.Storage.setValue(STORE_NAME, name);
+        Store.put(STORE_CAMERA, r);
+        Store.put(STORE_NAME, name);
         Log.add("chosen: " + name);
         if (_l == L_SCAN) {
             BluetoothLowEnergy.setScanState(BluetoothLowEnergy.SCAN_STATE_OFF);
@@ -555,7 +555,7 @@ class BleLink extends BluetoothLowEnergy.BleDelegate {
         _chunkGap = Settings.number("chunkGap", 0);
         var r = _pairedWith;
         if (r != null) {
-            Application.Storage.setValue(STORE_CAMERA, r);
+            Store.put(STORE_CAMERA, r);
         }
         var n = r != null ? r.getDeviceName() : null;
         Log.add("GATT ready");

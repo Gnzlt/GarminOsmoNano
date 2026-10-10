@@ -455,7 +455,7 @@ class NanoSession extends Camera {
             out.add(chars[Math.rand().abs() % (long ? 16 : chars.size())]);
         }
         var id = StringUtil.charArrayToString(out);
-        Application.Storage.setValue(key, id);
+        Store.put(key, id);
         return id;
     }
 
@@ -555,7 +555,7 @@ class NanoSession extends Camera {
         }
         if (code == 0x00 && kind == K_MODE) {
             mode = p[1];   // the screen's mode label is the confirmation
-            Application.Storage.setValue(STORE_MODE, p[1]);
+            Store.put(STORE_MODE, p[1]);
             Log.add("mode " + Nano.modeName(p[1]) + " saved as lastMode");
         } else if (code == 0x00 && kind == K_PHOTO) {
             photoAt = now;
