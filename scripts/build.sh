@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Build OsmoNano with strict type checking. The shape is the same in GarminOBD,
-# GarminOsmoNano and GarminTPMS; only APP, BETA_ID and the demo differ.
+# GarminOsmoNano, GarminTPMS and GarminMotoFields; only APP, BETA_ID and the demo differ.
 #   bin/OsmoNano-<device>.prg   release, to sideload: every product in manifest.xml,
 #                            or only $DEVICE when it is set (DEVICE=fenix847mm)
 #   bin/OsmoNano-test.prg       with the (:test) functions, for the simulator

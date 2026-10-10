@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Every image the app and its Store listing use. The shape is the same in
-# GarminOBD, GarminOsmoNano and GarminTPMS; only the renderers differ.
+# GarminMotoFields, GarminOBD, GarminOsmoNano and GarminTPMS; only the renderers differ.
 #   resources/main/drawables/launcher_icon.png   the launcher icon at BASE_ICON px
 #   resources/gen/<product>/                     the launcher icon at each other size
 #                                                (from the device profiles, through

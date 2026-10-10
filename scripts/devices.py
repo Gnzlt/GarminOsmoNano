@@ -1,7 +1,7 @@
 # The products every Connect IQ app here ships for, checked against the SDK's
 # device profiles (~/.Garmin/ConnectIQ/Devices, downloaded with Garmin's SDK
-# Manager). This file is the same in GarminOBD, GarminOsmoNano and GarminTPMS:
-# the three apps support the same watches, so a product ships in all of them or
+# Manager). This file is the same in GarminMotoFields, GarminOBD, GarminOsmoNano and GarminTPMS:
+# the four apps support the same watches, so a product ships in all of them or
 # in none. A candidate ships only if its profile shows:
 #   - a round screen (the layouts are proportional to a circle);
 #   - BLE for apps (every app here talks BLE);

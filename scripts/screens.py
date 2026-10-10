@@ -1,6 +1,6 @@
 # A Store screenshot from a simulator capture: the watch without the
 # simulator's menu and status bars, 540 px wide, as a JPEG. The same file in
-# GarminOBD, GarminOsmoNano and GarminTPMS.
+# GarminMotoFields, GarminOBD, GarminOsmoNano and GarminTPMS.
 #
 #   ciq-sim run bin/<App>-demo.prg fenix847mm
 #   ciq-sim shot store/screens/raw/<name>.png          (raw captures are gitignored)

@@ -17,8 +17,8 @@ The rules shared with the other Connect IQ projects come first; OsmoNano's own f
 
 ## Shared Connect IQ conventions
 
-> This section is word for word the same in GarminOBD, GarminOsmoNano and GarminTPMS, so the
-> three projects are developed one way. Change it in all three at once. `<App>` is the name the
+> This section is word for word the same in GarminMotoFields, GarminOBD, GarminOsmoNano and GarminTPMS, so the
+> four projects are developed one way. Change it in all four at once. `<App>` is the name the
 > project section below gives for build outputs.
 
 ### Hard rules
@@ -37,15 +37,15 @@ The rules shared with the other Connect IQ projects come first; OsmoNano's own f
 
 ### Products
 
-All three apps ship for the same watches: Garmin's **5-button round watches** (START, UP/MENU,
+All four apps ship for the same watches: Garmin's **5-button round watches** (START, UP/MENU,
 DOWN, BACK) with BLE for apps, **Connect IQ 5.0 or later**, 768 KB for a watch app and 128 KB for
 a data field. That is 44 products: fēnix 7/7S/7X/Pro, E, 8, 8 Pro and 9, epix 2/Pro, Enduro 3,
 Forerunner 165/255 Music/265/570/955/965/970, MARQ 2, D2 Mach and Instinct 3 AMOLED.
 Touch-first watches (Venu, vivoactive) and monochrome screens are out.
 
-- `scripts/devices.py` (the same file in all three) holds the candidates and checks each against
+- `scripts/devices.py` (the same file in all four) holds the candidates and checks each against
   its SDK device profile; a missing profile is reported, never assumed. To add a watch: add it to
-  `CANDIDATES` in all three, `uv run --no-project python scripts/devices.py --manifest`, then
+  `CANDIDATES` in all four, `uv run --no-project python scripts/devices.py --manifest`, then
   `scripts/icons.sh`, then look at the demo on it.
 - Screens are round, 218 to 466 px, AMOLED and MIP. Layouts are proportional to the screen.
   After a UI change, check the largest (454 px, fenix847mm) and the smallest (218 px, fr255sm).
@@ -62,7 +62,7 @@ Touch-first watches (Venu, vivoactive) and monochrome screens are out.
   art per screen size, `<product>/` the launcher icon at that product's size. They are
   committed, so a clone builds without the image tools.
 - Connect IQ finds qualifier folders only next to the base folder, so `scripts/jungles.py` (the
-  same in all three) names each product's `resources/gen/` folders in `monkey.jungle` and
+  same in all four) names each product's `resources/gen/` folders in `monkey.jungle` and
   `beta.jungle`, between the generated markers.
 
 ### Build
@@ -119,7 +119,7 @@ ciq-sim run bin/<App>-demo.prg fr255sm   # the demo on one device, headless
 
 ### README
 
-`README.md` has the same shape in all three projects, so a reader finds things in the same place:
+`README.md` has the same shape in all four projects, so a reader finds things in the same place:
 
 - The logo, `store/icon-500.png` at 140 px, centred; then the app's name as the title, a row of
   badges (the app type and "watches: 44", plus the licence, the Store and sponsor badges on a
@@ -129,7 +129,7 @@ ciq-sim run bin/<App>-demo.prg fr255sm   # the demo on one device, headless
   works** (a layer map of `source/` and links to `docs/`), **Diagnostics**, **Build and test**
   (the same commands), **Contributing**, **Credits**, **License**.
 - Change it with the change that makes it stale. The watch list and the build commands are the
-  same in all three, so they change in all three.
+  same in all four, so they change in all four.
 
 ### Diagnostics
 

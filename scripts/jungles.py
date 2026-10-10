@@ -3,7 +3,7 @@
 # folders only next to the base resource folder, so every product names its
 # own: resources/gen/round-WxH (art per screen size) and resources/gen/<product>
 # (its launcher icon), whichever exist. Run by scripts/icons.sh. This file is
-# the same in GarminOBD, GarminOsmoNano and GarminTPMS.
+# the same in GarminMotoFields, GarminOBD, GarminOsmoNano and GarminTPMS.
 import os
 import sys
 
