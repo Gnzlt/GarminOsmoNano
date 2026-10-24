@@ -1,0 +1,6 @@
+OsmoNano now works on 39 more watches, 83 in all: fenix 5 Plus and 6, Forerunner 55, 245, 255, 745 and 945, Descent, Instinct, Venu and vivoactive.
+
+- Instinct: drawn in white on black, with START's mark in the small round window.
+- Venu and vivoactive: swipe up or down to change the mode, hold the screen for the menu.
+
+Nothing changes on the watches that already worked.

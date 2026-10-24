@@ -1,0 +1,4 @@
+<!-- Written by scripts/icons.sh from scripts/devices.py: the screen and keys of this product. -->
+<strings>
+    <string id="UiFlags">start=22;mono</string>
+</strings>

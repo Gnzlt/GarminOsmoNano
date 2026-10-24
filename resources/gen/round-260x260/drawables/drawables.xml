@@ -1,0 +1,15 @@
+<!-- Written by scripts/mode-icons.py: the mode art at this screen size. -->
+<drawables>
+    <bitmap id="ModeVideo" filename="mode_video.png"><palette disableTransparency="true"><color>000000</color><color>555555</color><color>AAAAAA</color><color>FFFFFF</color></palette></bitmap>
+    <bitmap id="ModeVideoSmall" filename="mode_video_s.png"><palette disableTransparency="true"><color>000000</color><color>555555</color><color>AAAAAA</color><color>FFFFFF</color></palette></bitmap>
+    <bitmap id="ModePhoto" filename="mode_photo.png"><palette disableTransparency="true"><color>000000</color><color>555555</color><color>AAAAAA</color><color>FFFFFF</color></palette></bitmap>
+    <bitmap id="ModePhotoSmall" filename="mode_photo_s.png"><palette disableTransparency="true"><color>000000</color><color>555555</color><color>AAAAAA</color><color>FFFFFF</color></palette></bitmap>
+    <bitmap id="ModeTimelapse" filename="mode_timelapse.png"><palette disableTransparency="true"><color>000000</color><color>555555</color><color>AAAAAA</color><color>FFFFFF</color></palette></bitmap>
+    <bitmap id="ModeTimelapseSmall" filename="mode_timelapse_s.png"><palette disableTransparency="true"><color>000000</color><color>555555</color><color>AAAAAA</color><color>FFFFFF</color></palette></bitmap>
+    <bitmap id="ModeHyperlapse" filename="mode_hyperlapse.png"><palette disableTransparency="true"><color>000000</color><color>555555</color><color>AAAAAA</color><color>FFFFFF</color></palette></bitmap>
+    <bitmap id="ModeHyperlapseSmall" filename="mode_hyperlapse_s.png"><palette disableTransparency="true"><color>000000</color><color>555555</color><color>AAAAAA</color><color>FFFFFF</color></palette></bitmap>
+    <bitmap id="ModeSuperNight" filename="mode_supernight.png"><palette disableTransparency="true"><color>000000</color><color>555555</color><color>AAAAAA</color><color>FFFFFF</color></palette></bitmap>
+    <bitmap id="ModeSuperNightSmall" filename="mode_supernight_s.png"><palette disableTransparency="true"><color>000000</color><color>555555</color><color>AAAAAA</color><color>FFFFFF</color></palette></bitmap>
+    <bitmap id="ModeSloMo" filename="mode_slomo.png"><palette disableTransparency="true"><color>000000</color><color>555555</color><color>AAAAAA</color><color>FFFFFF</color></palette></bitmap>
+    <bitmap id="ModeSloMoSmall" filename="mode_slomo_s.png"><palette disableTransparency="true"><color>000000</color><color>555555</color><color>AAAAAA</color><color>FFFFFF</color></palette></bitmap>
+</drawables>

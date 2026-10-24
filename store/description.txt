@@ -1,0 +1,29 @@
+Control your DJI Osmo Nano from your wrist, with no phone.
+
+OsmoNano connects straight to the camera over Bluetooth and lets you:
+- start and stop recording
+- take a photo
+- pick the shooting mode: Video, Photo, Timelapse, Hyperlapse, SuperNight, Slow-mo
+- see the link, the mode, and whether the camera records, with the time on the watch
+
+The screen shows what each button will do: a red mark by START (record, stop or photo), and arrows by UP and DOWN when they change the mode.
+
+WATCHES
+Works on 83 Garmin watches, from the fenix 5 Plus to the fenix 9, the Forerunner 55 to 970, and the Descent, Instinct, Venu and vivoactive families.
+- Instinct: the screen is drawn in white on black, with START's mark in the small round window.
+- Venu and vivoactive have no UP and DOWN keys: swipe up or down to change the mode and hold the screen for the menu. START is still the shutter, and taps are ignored so a stray touch can't fire the camera.
+
+WHAT YOU NEED
+- A DJI Osmo Nano camera.
+- Its Vision Dock for the first pairing: the camera has no screen, so the Approve prompt appears on the dock.
+- The camera's phone app closed or disconnected: the camera accepts one Bluetooth controller at a time.
+
+HOW TO USE
+1. Turn on the camera and keep it close. Open OsmoNano.
+2. The first time, the app lists the devices it can see. Pick the camera with UP / DOWN and START. The app remembers it and connects by itself from then on.
+3. On the first connection, approve the watch on the Vision Dock.
+4. Once it shows Connected: START records or stops (in Photo mode it takes a photo), UP / DOWN change the mode. Hold UP for the menu: Disconnect lets the camera go to sleep, Change camera picks another one.
+
+This is an experimental app.
+
+Support and bug reports: hi@gnzlt.com

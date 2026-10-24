@@ -1,0 +1,6 @@
+<strings>
+    <string id="AppName">OsmoNano</string>
+    <string id="MadeBy">Made by Gnzlt.com</string>
+    <!-- The default; resources/gen/<product>/strings/ui.xml overrides it (scripts/icons.sh). See source/ui/Ui.mc. -->
+    <string id="UiFlags">start=30</string>
+</strings>

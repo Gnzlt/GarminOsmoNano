@@ -1,0 +1,9 @@
+<properties>
+    <!-- Protocol choices for testing on the camera; see NanoSession.mc. -->
+    <!-- SetPairingPIN: 0 short (4-char id + 1-char token, 20 bytes), 1 long (32-char id + "WATCH", 52 bytes) -->
+    <property id="pairing" type="number">0</property>
+    <!-- Replies to requests that arrived cut short, and to 0x00/0x81: 0 empty, 1 echo, 2 identity blob -->
+    <property id="infoReply" type="number">0</property>
+    <!-- Milliseconds between the 20-byte chunks of one frame: 0, 30 or 100 -->
+    <property id="chunkGap" type="number">0</property>
+</properties>
